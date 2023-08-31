@@ -1,0 +1,94 @@
+﻿@model IEnumerable<StudentManagement.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+  
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-secondary">Create New</a>
+    
+</p>
+<h2 style="text-align: right;">Search Students</h2>
+
+<div class="search-form" style="display: flex; align-items: center; justify-content: flex-end; width: 100%; margin-top: -24px;">
+    <form asp-action="Search" asp-controller="Student" method="post" class="d-flex">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group mb-0">
+            @Html.Label("SearchString", "", new { @class = "sr-only", style = "width: 21%; " })
+            @Html.TextBox("searchString", null, new { @class = "form-control", style = "width: 100%;" })
+        </div>
+        <div class="form-group mb-0 ml-2" style="margin-bottom: 0;">
+            <button type="submit" class="btn btn-primary" style="width: auto; margin-top: 24px;">Search</button>
+        </div>
+    </form>
+</div>
+
+@*<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <select id="ddlStudent" asp-for="Id" class="form-control" asp-items="@ViewBag.students"></select>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+</div>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FatherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MotherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentAge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FatherName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MotherName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentAge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
