@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using StudentManagement.Data;
 using StudentManagement.Models;
 
@@ -112,15 +113,16 @@ namespace StudentManagement.Controllers
         {
             if (string.IsNullOrWhiteSpace(searchString))
             {
-                var allStudents = studentDAL.GetAllStudents(); // Replace with actual logic to get all students
+                var allStudents = studentDAL.GetAllStudents();
                 return View("Index", allStudents);
             }
             else
             {
-                var searchResults = studentDAL.SearchStudents(searchString); // Replace with actual search logic
+                var searchResults = studentDAL.SearchStudents(searchString); 
                 return View("Index", searchResults);
             }
         }
+       
 
 
     }

@@ -20,7 +20,10 @@ namespace StudentManagement.Models
         [Required]
         public string? Address { get; set; }
         [Required]
+
         public DateTime? RegistrationDate { get; set; }
+
+        public int IsActive { get;set; }
 
     }
 }

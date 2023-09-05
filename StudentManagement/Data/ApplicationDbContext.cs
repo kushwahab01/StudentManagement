@@ -12,5 +12,7 @@ namespace StudentManagement.Data
         }
 
       public DbSet<Student> students { get; set; }
+      /*  public DbSet<StudentLog> StudentLogs { get; set; }*/
+
     }
 }
